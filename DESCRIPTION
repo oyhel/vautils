@@ -8,7 +8,6 @@ Description: Various functions that I need when processing data.
 Depends:
   R (>= 3.5.0)
 Imports:
-  data.table,
   sqldf,
   dplyr
 License: GPL-3

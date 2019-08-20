@@ -3,11 +3,12 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
                   "chromosome","position","GENE","START","STOP","geneSTART",
                   "geneSTOP"))
 
-#' Annotates nearest gene given input results and genelist. The list of
-#' annotations are stolen from PLINK documentation https://www.cog-genomics.org/plink/1.9/resources
+#' Annotates nearest gene for list of SNPs
 #'
 #' Finds the nearest gene for a list of markers. The input data expects a data
-#' frame with.
+#' frame with headers: rsid, chromosome, position. The list of
+#' annotations are obtained from PLINK documentation
+#' https://www.cog-genomics.org/plink/1.9/resources/
 #'
 #' @param data dataframe with results
 #' @param flanking flanking distance (in kB) on each side (ie. 20kb = spans 40kb)
@@ -18,10 +19,6 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
 #'                 the SNP is located
 #' @return data frame with nearest gene specified per marker
 #' @export
-
-# library(data.table)
-# library(sqldf)
-# library(dplyr)
 
 find_nearest_gene <-function(data, flanking, build='hg19', collapse=TRUE){
   if(build == 'hg18'){

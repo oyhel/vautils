@@ -2,8 +2,7 @@
 % Please edit documentation in R/find-nearest-gene.R
 \name{find_nearest_gene}
 \alias{find_nearest_gene}
-\title{Annotates nearest gene given input results and genelist. The list of
-annotations are stolen from PLINK documentation https://www.cog-genomics.org/plink/1.9/resources}
+\title{Annotates nearest gene for list of SNPs}
 \usage{
 find_nearest_gene(data, flanking, build = "hg19", collapse = TRUE)
 }
@@ -24,5 +23,7 @@ data frame with nearest gene specified per marker
 }
 \description{
 Finds the nearest gene for a list of markers. The input data expects a data
-frame with.
+frame with headers: rsid, chromosome, position. The list of
+annotations are obtained from PLINK documentation
+https://www.cog-genomics.org/plink/1.9/resources/
 }
