@@ -1,0 +1,17 @@
+Package: vautils
+Type: Package
+Title: Various Utilities That I Never Find When I Need
+Version: 0.1.0
+Author: Øyvind Helgeland
+Maintainer: Øyvind Helgeland <me@me.com>
+Description: Various functions that I need when processing data.
+Depends:
+  R (>= 3.5.0)
+Imports:
+  data.table,
+  sqldf,
+  dplyr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
