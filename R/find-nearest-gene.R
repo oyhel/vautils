@@ -38,6 +38,10 @@ find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
     genelist <- hg38genelist
   }
 
+  if(flanking != 100){
+    flanking = as.numeric(flanking)
+  }
+
   if(snp != 'SNP'){
     data <- data %>% rename(rsid = snp)
   }
