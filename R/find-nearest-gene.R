@@ -26,6 +26,8 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
 
 find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
                              snp='rsid', chr='chromosome', bp='position'){
+
+  data <- data
   if(build == 'hg18'){
     genelist <- hg18genelist
   }
@@ -53,6 +55,8 @@ find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
   if(bp != 'position'){
     data <- data %>% rename(position = bp)
   }
+
+  print(head(data))
 
   data<-sqldf::sqldf(sprintf("select A.*,B.* from
               data A left join genelist B
