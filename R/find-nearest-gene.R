@@ -25,7 +25,7 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
 #' @export
 
 find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
-                             snp='SNP', chr='CHR', bp='BP'){
+                             snp='rsid', chr='chromosome', bp='position'){
   if(build == 'hg18'){
     genelist <- hg18genelist
   }
@@ -42,15 +42,15 @@ find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
     flanking = as.numeric(flanking)
   }
 
-  if(snp != 'SNP'){
+  if(snp != 'rsid'){
     data <- data %>% rename(rsid = snp)
   }
 
-  if(chr != 'CHR'){
+  if(chr != 'chromosome'){
     data <- data %>% rename(chromosome = chr)
   }
 
-  if(bp != 'BP'){
+  if(bp != 'position'){
     data <- data %>% rename(position = bp)
   }
 
