@@ -10,17 +10,22 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
 #' annotations are obtained from PLINK documentation
 #' https://www.cog-genomics.org/plink/1.9/resources/
 #'
-#' @param data dataframe with results
-#' @param flanking flanking distance (in kB) on each side (ie. 20kb = spans 40kb)
-#' @param build string specifying build (hg19 (default), hg18, hg38)
-#' @param collapse if TRUE (default) collapses nearest genes into single commasep.
-#'                 line. If FALSE returns all annotated genes on separate lines with
-#'                 a 'distance' column showing how many bp upstream (+) or downstream(-)
-#'                 the SNP is located
+#' @param data      dataframe with results
+#' @param flanking  flanking distance (in kB) on each side (ie. 20kb = spans 40kb)
+#'                  defaults to 100kb (spans 200kb)
+#' @param build     string specifying build (hg19 (default), hg18, hg38)
+#' @param collapse  if TRUE (default) collapses nearest genes into single commasep.
+#'                  line. If FALSE returns all annotated genes on separate lines with
+#'                  a 'distance' column showing how many bp upstream (+) or downstream(-)
+#'                  the SNP is located
+#' @param snp       snp column name in input data
+#' @param bp        position/bp column name in input data
+#' @param chr       chromosome column name in input data
 #' @return data frame with nearest gene specified per marker
 #' @export
 
-find_nearest_gene <-function(data, flanking, build='hg19', collapse=TRUE){
+find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
+                             snp='SNP', chr='CHR', bp='BP'){
   if(build == 'hg18'){
     genelist <- hg18genelist
   }
@@ -31,6 +36,18 @@ find_nearest_gene <-function(data, flanking, build='hg19', collapse=TRUE){
 
   if(build == 'hg38'){
     genelist <- hg38genelist
+  }
+
+  if(snp != 'SNP'){
+    data <- data %>% rename(rsid = snp)
+  }
+
+  if(chr != 'CHR'){
+    data <- data %>% rename(chromosome = chr)
+  }
+
+  if(bp != 'BP'){
+    data <- data %>% rename(position = bp)
   }
 
   data<-sqldf::sqldf(sprintf("select A.*,B.* from
