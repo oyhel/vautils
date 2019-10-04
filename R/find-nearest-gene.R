@@ -1,7 +1,7 @@
 # Outrages hack to avoid global variable bullshit, but keep it in for now
 globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
                   "chromosome","position","GENE","START","STOP","geneSTART",
-                  "geneSTOP"))
+                  "geneSTOP", "snp"))
 
 #' Annotates nearest gene for list of SNPs
 #'
