@@ -24,8 +24,7 @@ globalVariables(c("hg18genelist","hg19genelist","hg38genelist", "rsid", "%>%",
 #' @return data frame with nearest gene specified per marker
 #' @export
 
-find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE,
-                             snp='rsid', chr='chromosome', bp='position'){
+find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){
 
   data <- data # not sure this is needed
 
