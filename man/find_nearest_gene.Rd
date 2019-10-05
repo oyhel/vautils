@@ -4,12 +4,15 @@
 \alias{find_nearest_gene}
 \title{Annotates nearest gene for list of SNPs}
 \usage{
-find_nearest_gene(data, flanking, build = "hg19", collapse = TRUE)
+find_nearest_gene(data, flanking = 100, build = "hg19",
+  collapse = TRUE, snp = "rsid", chr = "chromosome",
+  bp = "position")
 }
 \arguments{
 \item{data}{dataframe with results}
 
-\item{flanking}{flanking distance (in kB) on each side (ie. 20kb = spans 40kb)}
+\item{flanking}{flanking distance (in kB) on each side (ie. 20kb = spans 40kb)
+defaults to 100kb (spans 200kb)}
 
 \item{build}{string specifying build (hg19 (default), hg18, hg38)}
 
@@ -17,6 +20,12 @@ find_nearest_gene(data, flanking, build = "hg19", collapse = TRUE)
 line. If FALSE returns all annotated genes on separate lines with
 a 'distance' column showing how many bp upstream (+) or downstream(-)
 the SNP is located}
+
+\item{snp}{snp column name in input data}
+
+\item{chr}{chromosome column name in input data}
+
+\item{bp}{position/bp column name in input data}
 }
 \value{
 data frame with nearest gene specified per marker
